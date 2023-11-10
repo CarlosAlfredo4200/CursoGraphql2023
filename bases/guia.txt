@@ -1,0 +1,3 @@
+https://www.apollographql.com/docs/apollo-server/getting-started
+
+https://www.youtube.com/watch?v=Y-KDpO24RC4&ab_channel=GOGODEV
