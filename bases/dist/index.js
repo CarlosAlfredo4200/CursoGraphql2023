@@ -6,34 +6,34 @@ import { startStandaloneServer } from '@apollo/server/standalone';
  */
 const books = [
     {
-        "id": "1",
-        "title": "La sombra del viento",
-        "author": "Carlos Ruiz Zafón",
-        "publishedYear": 2001
+        id: 1,
+        title: "La sombra del viento",
+        author: "Carlos Ruiz Zafón",
+        publishedYear: 2001
     },
     {
-        "id": "2",
-        "title": "Cien años de soledad",
-        "author": "Gabriel García Márquez",
-        "publishedYear": 1967
+        id: 2,
+        title: "Cien años de soledad",
+        author: "Gabriel García Márquez",
+        publishedYear: 1967
     },
     {
-        "id": "3",
-        "title": "1984",
-        "author": "George Orwell",
-        "publishedYear": 1949
+        id: 3,
+        title: "1984",
+        author: "George Orwell",
+        publishedYear: 1949
     },
     {
-        "id": "4",
-        "title": "El Gran Gatsby",
-        "author": "F. Scott Fitzgerald",
-        "publishedYear": 1925
+        id: 4,
+        title: "El Gran Gatsby",
+        author: "F. Scott Fitzgerald",
+        publishedYear: 1925
     },
     {
-        "id": "5",
-        "title": "Matar a un ruiseñor",
-        "author": "Harper Lee",
-        "publishedYear": 1960
+        id: 5,
+        title: "Matar a un ruiseñor",
+        author: "Harper Lee",
+        publishedYear: 1960
     }
 ];
 /**
@@ -43,12 +43,15 @@ const books = [
 const typeDefs = `
 
       type Book {
+        id:ID!
         title: String
         author: String
+         
       }
 
       type Query {
         books:[Book]
+        book(id:ID!): Book
       }
 `;
 /**
@@ -56,7 +59,8 @@ const typeDefs = `
  */
 const resolvers = {
     Query: {
-        books: () => books
+        books: () => books,
+        book: (parent, args) => books.find((book) => book.id === parseInt(args.id))
     }
 };
 /**
